@@ -1,6 +1,6 @@
 {
   "name": "client",
-  "proxy": "https://pacific-tor-49660.herokuapp.com/",
+  "proxy": "https://pacific-tor-49660.herokuapp.com",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

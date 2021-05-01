@@ -13,7 +13,8 @@ import {
   USER_UPDATE_PROFILE_FAIL,
   USER_LOGOUT,
 } from "../constants/userConstants";
-import axios from "axios";
+import AxiosConfig from '../../AxiosConfig/AxiosConfig'
+
 
 export const login = (email, password) => async (dispatch) => {
   try {
@@ -21,7 +22,7 @@ export const login = (email, password) => async (dispatch) => {
 
     const config = { headers: { "Content-Type": "application/json" } };
 
-    const { data } = await axios.post(
+    const { data } = await AxiosConfig.post(
       "/api/users/login",
       { email, password },
       config
@@ -60,7 +61,7 @@ export const register = (name, email, password) => async (dispatch) => {
       },
     };
 
-    const { data } = await axios.post(
+    const { data } = await AxiosConfig.post(
       "/api/users",
       { name, email, password },
       config
@@ -107,7 +108,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/api/users/${id}`, config);
+    const { data } = await AxiosConfig.get(`/api/users/${id}`, config);
 
     dispatch({
       type: USER_DETAILS_SUCCESS,
@@ -143,7 +144,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.put(`/api/users/profile`, user, config);
+    const { data } = await AxiosConfig.put(`/api/users/profile`, user, config);
 
     dispatch({
       type: USER_UPDATE_PROFILE_SUCCESS,

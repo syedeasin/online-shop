@@ -6,17 +6,18 @@ import {
   PRODUCT_LIST_REQUEST,
   PRODUCT_LIST_SUCCESS,
 } from "../constants/productConstants";
-import Axios from "axios";
+import AxiosConfig from '../../AxiosConfig/AxiosConfig'
+
 
 export const listProduct = () => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST });
 
-    const { data } = await Axios.get("/api/products");
+    const { data } = await AxiosConfig.get("/api/products");
 
     dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
   } catch (error) {
-    console.log(error.response.data.message);
+    console.log(error?.response?.data?.message);
 
     dispatch({
       type: PRODUCT_LIST_FAIL,
@@ -32,7 +33,7 @@ export const listProductDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_DETAILS_REQUEST });
 
-    const { data } = await Axios.get("/api/products/" + id);
+    const { data } = await AxiosConfig.get("/api/products/" + id);
 
     dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data });
   } catch (error) {

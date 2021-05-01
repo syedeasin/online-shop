@@ -12,7 +12,8 @@ import {
   ORDER_LIST_MY_SUCCESS,
   ORDER_LIST_MY_FAIL,
 } from "../constants/orderConstants";
-import axios from "axios";
+import AxiosConfig from '../../AxiosConfig/AxiosConfig'
+
 
 export const createOrder = (order) => async (dispatch, getState) => {
   try {
@@ -31,7 +32,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.post(`/api/orders`, order, config);
+    const { data } = await AxiosConfig.post(`/api/orders`, order, config);
 
     dispatch({
       type: ORDER_CREATE_SUCCESS,
@@ -65,7 +66,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/api/orders/${id}`, config);
+    const { data } = await AxiosConfig.get(`/api/orders/${id}`, config);
 
     dispatch({
       type: ORDER_DETAILS_SUCCESS,
@@ -100,7 +101,7 @@ export const payOrder = (id, paymentResult) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.put(
+    const { data } = await AxiosConfig.put(
       `/api/orders/${id}/pay`,
       paymentResult,
       config
@@ -138,7 +139,7 @@ export const listMyOrder = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/api/orders/myOrders`, config);
+    const { data } = await AxiosConfig.get(`/api/orders/myOrders`, config);
 
     dispatch({
       type: ORDER_LIST_MY_SUCCESS,

@@ -6,6 +6,7 @@ import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
+import cors from 'cors'
 
 const PORT = process.env.PORT || 5000;
 
@@ -14,6 +15,7 @@ const app = express();
 // Body parser
 
 app.use(express.json());
+app.use(cors());
 
 dotenv.config();
 
